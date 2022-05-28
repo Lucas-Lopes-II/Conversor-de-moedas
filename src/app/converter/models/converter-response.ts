@@ -1,5 +1,6 @@
 export interface ConverterResponse {
-  base: string;
-  data: string;
-  rates: string;
+  result: number;
+  info: any;
+  query: object;
+  date: string
 }
