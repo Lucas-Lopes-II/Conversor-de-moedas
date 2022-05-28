@@ -12,6 +12,7 @@ import { ConverterResponse } from '../models/converter-response';
 export class ConverterService {
 
   private readonly API: string = environment.API
+  private readonly KEY: string = environment.KEY
 
   constructor(
     private http: HttpClient
@@ -20,6 +21,6 @@ export class ConverterService {
   converter(converter: Converter): Observable<ConverterResponse> {
     const params = `?to=${converter.currencyTo}&from=${converter.currencyForm}&amount=${converter.value}`;
 
-    return this.http.get<ConverterResponse>(`${this.API}${params}&apikey=FO6ZWoSWLS5z15d8a7EW9ChO7LrSuJyS`);
+    return this.http.get<ConverterResponse>(`${this.API}${params}&apikey=${this.KEY}`);
   }
 }
