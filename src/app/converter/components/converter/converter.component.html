@@ -1,4 +1,4 @@
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger" role="alert" *ngIf="thereIsError">
   Erro obtendo dados. Tente novamente.
 </div>
 <div class="panel panel-success">
@@ -6,14 +6,15 @@
     Selecione a moeda a ser convertida
   </div>
   <div class="panel-body text-center">
-    <form class="form-group d-flex">
-      <input type="number" name="valor" class="form-control text-right" placeholder="0" required>
-      <select name="moedaDe" class="form-control" required>
+    <form class="form-group d-flex" [formGroup]="converterForm" (ngSubmit)="convert()">
+      <input type="number" name="value" class="form-control text-right me-4 w-50" placeholder="0" required
+        formControlName="value">
+      <select name="currencyFrom" class="form-select me-4 w-50" required formControlName="currencyFrom">
         <option>
         </option>
       </select>
       <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-      <select name="moedaPara" class="form-control" required>
+      <select name="currencyTo" class="form-select me-4 w-50" required formControlName="currencyTo">
         <option>
         </option>
       </select>

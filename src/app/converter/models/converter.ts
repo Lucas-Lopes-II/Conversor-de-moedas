@@ -1,5 +1,5 @@
 export interface Converter {
-  currencyForm: string;
+  currencyFrom: string;
   currencyTo: string;
-  value: number;
+  value: number | null;
 }
