@@ -7,7 +7,7 @@
   </div>
   <div class="panel-body text-center">
     <form class="form-group d-flex" [formGroup]="converterForm" (ngSubmit)="convert()">
-      <input type="number" name="value" class="form-control text-right me-4 w-50" placeholder="0" required
+      <input onlyNumber type="number" name="value" class="form-control text-right me-4 w-50" placeholder="0" required
         formControlName="value">
       <select name="currencyFrom" class="form-select me-4 w-50" required formControlName="currencyFrom">
         <option *ngFor="let currency of currencies" [value]="currency.initials">

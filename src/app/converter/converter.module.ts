@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ConverterComponent } from './components/converter/converter.component';
+import { OnlyNumberDirective } from './directives/only-number.directive';
 
 
 
 @NgModule({
   declarations: [
-    ConverterComponent
+    ConverterComponent,
+    OnlyNumberDirective
   ],
   imports: [
     CommonModule,
