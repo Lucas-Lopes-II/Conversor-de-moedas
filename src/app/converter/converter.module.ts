@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConverterComponent } from './components/converter/converter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { ConverterComponent } from './components/converter/converter.component';
 
 
 
