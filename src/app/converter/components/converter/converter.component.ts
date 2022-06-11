@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Converter } from '../../models/converter';
+import { ConverterData } from '../../models/converter-data';
 import { Currency } from '../../models/currency';
 import { ConverterService } from '../../services/converter.service';
 import { CurrencyService } from '../../services/currency.service';
@@ -16,7 +17,7 @@ export class ConverterComponent implements OnInit {
   public currencies!: Currency[];
   public thereIsError: boolean = false;
   public converterInfo: boolean = false;
-  public converterData: object = {};
+  public converterData!: ConverterData;
   public converterForm!: FormGroup;
 
   constructor(
@@ -54,6 +55,8 @@ export class ConverterComponent implements OnInit {
       this.converterService.converter(formValue).subscribe(
         response => {
           this.receiveAndOrganizeData(response);
+          this.converterInfo = true;
+          console.log(this.converterData);
         },
         error => {
           console.log(error);
@@ -71,7 +74,7 @@ export class ConverterComponent implements OnInit {
   }
 
   private receiveAndOrganizeData(responseData: any): void {
-    const data = {
+    const data: ConverterData = {
       value: responseData.query.amount,
       currencyFrom: responseData.query.from,
       converterValue: responseData.result,
@@ -80,6 +83,15 @@ export class ConverterComponent implements OnInit {
       date: responseData.date
     }
 
-    this.converterData = { ...data, value: (data.value).toFixed(2), converterValue: (data.converterValue).toFixed(2) };
+    this.converterData = { ...data, value: (Number(data.value)).toFixed(2), converterValue: (Number(data.converterValue)).toFixed(2) };
+  }
+
+  newQuoteQuery(): void {
+    this.init();
+    this.converterForm = this.formBuilder.group({
+      value: [''],
+      currencyFrom: ['USD'],
+      currencyTo: ['BRL']
+    });
   }
 }
