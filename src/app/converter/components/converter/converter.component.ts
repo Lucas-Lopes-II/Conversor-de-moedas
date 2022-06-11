@@ -50,8 +50,23 @@ export class ConverterComponent implements OnInit {
   }
 
   convert(): void {
-    const form: Converter = this.converterForm.getRawValue();
+    const form = this.converterForm;
+    const formValue: Converter = this.converterForm.getRawValue();
 
-    this.converterForm.reset();
+    if (form.valid) {
+      this.converterService.converter(formValue).subscribe(response => {
+        this.converterResponse = response;
+        console.log(response);
+      }, error => {
+        console.log(error);
+        console.log(error.error);
+        console.log(error.error.message);
+        this.thereIsError = true;
+      });
+    } else {
+      this.thereIsError = true;
+      this.converterForm.reset();
+    }
+
   }
 }
