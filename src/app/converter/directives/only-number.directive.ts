@@ -13,15 +13,15 @@ export class OnlyNumberDirective {
 
   @HostListener('keyup', ['$event'])
   public onKeyup($event: any): void {
-    let valor = $event.target.value;
-    let posDecimais = valor.indexOf('.');
+    const value = $event.target.value;
+    const posDecimais = value.indexOf('.');
 
-    valor = valor.replace(/[\D]/g, ''); //remove tudo que não é número
+    let onlyNuberValue = value.replace(/[\D]/g, ''); //remove tudo que não é número
 
     if (posDecimais > 0) {
-      valor = valor.substr(0, posDecimais) + '.' + valor.substr(posDecimais); //tira o ponto '.' se ja tiver sido digitado
+      onlyNuberValue = onlyNuberValue.substr(0, posDecimais) + '.' + onlyNuberValue.substr(posDecimais); //tira o ponto '.' se ja tiver sido digitado
     }
 
-    $event.target.value = valor;
+    $event.target.value = onlyNuberValue;
   }
 }

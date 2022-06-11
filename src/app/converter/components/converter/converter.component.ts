@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { Converter } from '../../models/converter';
 import { ConverterResponse } from '../../models/converter-response';
 import { Currency } from '../../models/currency';
@@ -48,6 +49,7 @@ export class ConverterComponent implements OnInit {
 
   convert(): void {
     const form: Converter = this.converterForm.getRawValue();
+    console.log(form);
 
 
     this.converterForm.reset()

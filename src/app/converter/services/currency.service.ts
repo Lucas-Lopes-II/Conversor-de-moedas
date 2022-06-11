@@ -1,9 +1,8 @@
-import { Currency } from '../models/currency';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Currency } from '../models/currency';
+
+@Injectable()
 export class CurrencyService {
 
   private currencies: Currency[] = [ //http://fixer.io

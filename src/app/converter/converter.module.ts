@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ConverterComponent } from './components/converter/converter.component';
 import { OnlyNumberDirective } from './directives/only-number.directive';
+import { CurrencyService } from './services/currency.service';
+import { ConverterService } from './services/converter.service';
 
 
 
@@ -18,6 +20,7 @@ import { OnlyNumberDirective } from './directives/only-number.directive';
   ],
   exports: [
     ConverterComponent
-  ]
+  ],
+  providers: [CurrencyService, ConverterService]
 })
 export class ConverterModule { }
