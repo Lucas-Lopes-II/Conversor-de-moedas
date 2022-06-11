@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Converter } from '../../models/converter';
-import { ConverterResponse } from '../../models/converter-response';
 import { Currency } from '../../models/currency';
 import { ConverterService } from '../../services/converter.service';
 import { CurrencyService } from '../../services/currency.service';
@@ -15,9 +14,7 @@ import { CurrencyService } from '../../services/currency.service';
 export class ConverterComponent implements OnInit {
 
   public currencies!: Currency[];
-  public converter!: Converter;
   public thereIsError: boolean = false;
-  public converterResponse!: ConverterResponse;
   public converterInfo: boolean = false;
   public converterData: object = {};
   public converterForm!: FormGroup;
@@ -54,19 +51,35 @@ export class ConverterComponent implements OnInit {
     const formValue: Converter = this.converterForm.getRawValue();
 
     if (form.valid) {
-      this.converterService.converter(formValue).subscribe(response => {
-        this.converterResponse = response;
-        console.log(response);
-      }, error => {
-        console.log(error);
-        console.log(error.error);
-        console.log(error.error.message);
-        this.thereIsError = true;
-      });
+      this.converterService.converter(formValue).subscribe(
+        response => {
+          this.receiveAndOrganizeData(response);
+        },
+        error => {
+          console.log(error);
+          console.log(error.error);
+          console.log(error.error.message);
+          this.thereIsError = true;
+        }
+      );
     } else {
       this.thereIsError = true;
       this.converterForm.reset();
     }
 
+    this.converterForm.reset();
+  }
+
+  private receiveAndOrganizeData(responseData: any): void {
+    const data = {
+      value: responseData.query.amount,
+      currencyFrom: responseData.query.from,
+      converterValue: responseData.result,
+      currencyTo: responseData.query.to,
+      currencyQuote: responseData.info.rate,
+      date: responseData.date
+    }
+
+    this.converterData = { ...data, value: (data.value).toFixed(2), converterValue: (data.converterValue).toFixed(2) };
   }
 }
