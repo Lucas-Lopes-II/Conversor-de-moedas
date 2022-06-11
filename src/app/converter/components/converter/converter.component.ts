@@ -37,14 +37,9 @@ export class ConverterComponent implements OnInit {
     this.init();
   }
 
-  init(): void {
+  private init(): void {
     this.thereIsError = false;
     this.converterInfo = false;
-  }
-
-  newConversion(): void {
-    this.converterInfo = false;
-    this.converterForm.reset()
   }
 
   convert(): void {

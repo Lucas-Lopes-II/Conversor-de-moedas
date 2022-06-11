@@ -26,7 +26,7 @@
   <div *ngIf="converterInfo">
     <div class="card text-center">
       <div>
-        <h3>Em {{ converterData.date }}</h3>
+        <h3>Em {{ converterData.date | dataBr }}</h3>
         <h2>
           {{ converterData.value }}
           {{ converterData.currencyFrom }}

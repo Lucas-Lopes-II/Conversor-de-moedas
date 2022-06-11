@@ -7,13 +7,15 @@ import { OnlyNumberDirective } from './directives/only-number.directive';
 import { CurrencyService } from './services/currency.service';
 import { ConverterService } from './services/converter.service';
 import { CommonModule } from '@angular/common';
+import { DataBrPipe } from './pipes/data-br.pipe';
 
 
 
 @NgModule({
   declarations: [
     ConverterComponent,
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    DataBrPipe
   ],
   imports: [
     CommonModule,
