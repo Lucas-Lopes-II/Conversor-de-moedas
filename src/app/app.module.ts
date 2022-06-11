@@ -12,7 +12,7 @@ import { ConverterModule } from './converter/converter.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ConverterModule
+    ConverterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

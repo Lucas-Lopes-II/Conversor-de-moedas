@@ -20,7 +20,7 @@
           {{ currency.initials }} - {{ currency.description }}
         </option>
       </select>
-      <input type="submit" value="Converter" class="btn btn-success">
+      <input type="submit" value="Converter" class="btn btn-success" [disabled]="!converterForm.valid">
     </form>
   </div>
 </div>

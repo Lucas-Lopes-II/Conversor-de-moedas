@@ -1,11 +1,12 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ConverterComponent } from './components/converter/converter.component';
 import { OnlyNumberDirective } from './directives/only-number.directive';
 import { CurrencyService } from './services/currency.service';
 import { ConverterService } from './services/converter.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -16,7 +17,9 @@ import { ConverterService } from './services/converter.service';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     ConverterComponent

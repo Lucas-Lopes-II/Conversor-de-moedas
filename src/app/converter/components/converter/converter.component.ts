@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Converter } from '../../models/converter';
 import { ConverterResponse } from '../../models/converter-response';
 import { Currency } from '../../models/currency';
+import { ConverterService } from '../../services/converter.service';
 import { CurrencyService } from '../../services/currency.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class ConverterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private currencyService: CurrencyService
+    private currencyService: CurrencyService,
+    private converterService: ConverterService
   ) { }
 
   ngOnInit(): void {
@@ -49,9 +51,7 @@ export class ConverterComponent implements OnInit {
 
   convert(): void {
     const form: Converter = this.converterForm.getRawValue();
-    console.log(form);
 
-
-    this.converterForm.reset()
+    this.converterForm.reset();
   }
 }
