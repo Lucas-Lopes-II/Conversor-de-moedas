@@ -1,32 +1,13 @@
 <div class="alert alert-danger" role="alert" *ngIf="thereIsError">
   Erro obtendo dados. Tente novamente.
 </div>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    Selecione a moeda a ser convertida
-  </div>
-  <div class="panel-body text-center">
-    <form class="form-group d-flex" [formGroup]="converterForm" (ngSubmit)="convert()">
-      <input onlyNumber type="number" name="value" class="form-control text-right me-4 w-50" placeholder="0" required
-        formControlName="value">
-      <select name="currencyFrom" class="form-select me-4 w-50" required formControlName="currencyFrom">
-        <option *ngFor="let currency of currencies" [value]="currency.initials">
-          {{ currency.initials }} - {{ currency.description }}
-        </option>
-      </select>
-      <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-      <select name="currencyTo" class="form-select me-4 w-50" required formControlName="currencyTo">
-        <option *ngFor="let currency of currencies" [value]="currency.initials">
-          {{ currency.initials }} - {{ currency.description }}
-        </option>
-      </select>
-      <input type="submit" value="Converter" class="btn btn-success" [disabled]="!converterForm.valid">
-    </form>
-  </div>
-  <div *ngIf="converterInfo">
-    <div class="card text-center">
+<div class="container-xl m-xl-aouto d-flex flex-wrap justify-content-center vh-100 mt-5 mx-md-5 w-100">
+  <div class="col-12 col-xl-6 d-flex justify-content-center">
+    <h2 class="mt-5 pt-3" *ngIf="!converterInfo">Nenhum Resultado...</h2>
+    <div class="" *ngIf="converterInfo">
       <div>
         <h3>Em {{ converterData.date | dataBr }}</h3>
+
         <h2>
           {{ converterData.value }}
           {{ converterData.currencyFrom }}
@@ -35,10 +16,43 @@
           {{ converterData.currencyTo }}
         </h2>
       </div>
-    </div>
-    <div class="d-flex justify-content-end px-4">
-      <button type="button" class="btn btn-primary" (click)="newQuoteQuery()">
-        Nova consulta
-      </button>
+
+      <div class="d-flex justify-content-end px-4">
+        <button type="button" class="btn btn-primary" (click)="newQuoteQuery()">
+          Nova consulta
+        </button>
+      </div>
     </div>
   </div>
+
+  <div class="panel-body text-center col-12 col-xl-6">
+    <form class="form-group d-flex flex-column" [formGroup]="converterForm" (ngSubmit)="convert()">
+      <label for="value" class="align-self-start mb-2">
+        Selecione o valor a ser convertida
+      </label>
+
+      <input id="value" onlyNumber type="number" name="value" class="px-3 form-control text-right mb-2 w-100"
+        placeholder="0" required formControlName="value">
+
+      <label for="currencyFrom" class="align-self-start my-2">
+        Selecione a moeda a ser convertida
+      </label>
+
+      <select id="currencyFrom" name="currencyFrom" class="form-select mb-2 w-100" required
+        formControlName="currencyFrom">
+        <option *ngFor="let currency of currencies" [value]="currency.initials">
+          {{ currency.initials }} - {{ currency.description }}
+        </option>
+      </select>
+
+      <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+      <select name="currencyTo" class="form-select mb-2 w-100" required formControlName="currencyTo">
+        <option *ngFor="let currency of currencies" [value]="currency.initials">
+          {{ currency.initials }} - {{ currency.description }}
+        </option>
+      </select>
+
+      <input type="submit" value="Converter" class="btn btn-success" [disabled]="!converterForm.valid">
+    </form>
+  </div>
+</div>
